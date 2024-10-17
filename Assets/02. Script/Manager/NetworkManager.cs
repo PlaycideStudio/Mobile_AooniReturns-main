@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -132,7 +132,7 @@ public class NetworkManager : Manager
             yield break;
         }
 
-        //EDIT: Ready => Game (¾À ÅëÇÕ) 
+        //EDIT: Ready => Game (ì”¬ í†µí•©) 
         SceneManager.LoadScene((int)EScene.Game);
 
         try { _onComplete?.Invoke(); }
@@ -183,7 +183,7 @@ public class NetworkManager : Manager
             yield break;
         }
 
-        //EDIT: Ready => Game (¾À ÅëÇÕ) 
+        //EDIT: Ready => Game (ì”¬ í†µí•©) 
         SceneManager.LoadScene((int)EScene.Game); 
 
         try { _onComplete?.Invoke(); }

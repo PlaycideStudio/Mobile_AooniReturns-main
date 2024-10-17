@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+Ôªøusing System.Collections.Generic;
 using Fusion;
 using TMPro;
 using UnityEngine;
@@ -84,7 +84,7 @@ public class ChatPanel : NetworkBehaviour
             _msg = _msg[0..^1];
         }
 
-        Debug.Log("RPC_SendChat »£√‚");
+        Debug.Log("RPC_SendChat Ìò∏Ï∂ú");
         RPC_SendChat(_msg);
 
         chatInput.text = string.Empty;
@@ -94,7 +94,7 @@ public class ChatPanel : NetworkBehaviour
     [Rpc]
     private void RPC_SendChat(string _msg, RpcInfo _info = default)
     {
-        Debug.Log($"RPC_SendChat »£√‚µ : {_msg}");
+        Debug.Log($"RPC_SendChat Ìò∏Ï∂úÎê®: {_msg}");
 
         messageBuffer.Enqueue(new()
         {

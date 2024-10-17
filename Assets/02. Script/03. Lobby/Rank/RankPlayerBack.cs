@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using PlayFab;
 using PlayFab.ClientModels;
@@ -28,7 +28,7 @@ public class RankPlayerBack : MonoBehaviour
     {
         if (playerID == _player.PlayFabId) return;
 
-        rankTMP.text = string.Format("{0}��", (_player.Position + 1).ToString());
+        rankTMP.text = string.Format("{0}위", (_player.Position + 1).ToString());
         nickTMP.text = _player.DisplayName;
 
         GetPlayerEXP(_player.PlayFabId,
@@ -95,6 +95,6 @@ public class RankPlayerBack : MonoBehaviour
     private string GetScoreText(RankType _type) => _type switch
     {
         RankType.Exp => "{0} EXP",
-        _ => "{0}ȸ"
+        _ => "{0}회"
     };
 }

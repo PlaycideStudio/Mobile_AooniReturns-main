@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -82,7 +82,7 @@ public class SignUpPanel : UIBase
                 break;
 
             default:
-                //ErrorNotice($"¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.({error})");
+                //ErrorNotice($"ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.({error})");
                 break;
         }
     }
@@ -100,7 +100,7 @@ public class SignUpPanel : UIBase
                 break;
 
             default:
-                //ErrorNotice($"¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.({error})");
+                //ErrorNotice($"ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.({error})");
                 break;
         }
     }
@@ -116,15 +116,15 @@ public class SignUpPanel : UIBase
                 break;
 
             case ELoadError.TitleDataFail:
-                //ErrorNotice($"Å¸ÀÌÆ² µ¥ÀÌÅÍ¸¦ °¡Á®¿Ã ¼ö ¾ø½À´Ï´Ù.({error})");
+                //ErrorNotice($"íƒ€ì´í‹€ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.({error})");
                 break;
 
             case ELoadError.PlayerDataFail:
-                //ErrorNotice($"ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ¸¦ °¡Á®¿Ã ¼ö ¾ø½À´Ï´Ù.({error})");
+                //ErrorNotice($"í”Œë ˆì´ì–´ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.({error})");
                 break;
 
             default:
-                //ErrorNotice($"¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.({error})");
+                //ErrorNotice($"ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.({error})");
                 break;
         }
     }

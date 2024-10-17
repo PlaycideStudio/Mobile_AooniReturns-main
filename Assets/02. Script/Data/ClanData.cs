@@ -1,4 +1,4 @@
-using PlayFab;
+﻿using PlayFab;
 using PlayFab.GroupsModels;
 using System;
 using System.Collections.Generic;

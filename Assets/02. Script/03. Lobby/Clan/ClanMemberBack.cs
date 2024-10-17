@@ -1,4 +1,4 @@
-using PlayFab;
+ï»¿using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.ProfilesModels;
 
@@ -58,7 +58,7 @@ public class ClanMemberBack : MonoBehaviour
             App.Data.Player.GetLeaderboardRank(playerID,
             (result, isRanked) =>
             {
-                var rankText = isRanked ? string.Format("{0}À§", result) : "¼øÀ§±Ç ¿Ü";
+                var rankText = isRanked ? string.Format("{0}ìœ„", result) : "ìˆœìœ„ê¶Œ ì™¸";
                 rankTMP.text = rankText;
             },
             (error) =>

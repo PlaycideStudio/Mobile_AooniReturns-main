@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -12,9 +12,9 @@ public class NoticePanel : UIBase
     private Sequence sequence;
     private IEnumerator tmpAnim;
 
-    private const string beforeGameStart = "Àá½Ã µÚ¿¡ ¼÷ÁÖ ¿À´Ï°¡ °áÁ¤µË´Ï´Ù.\n¼­·Î ¸Ö¸® ¶³¾îÁö¼¼¿ä!";
-    private const string countDown = "{0}ÃÊ ³²¾Ò½À´Ï´Ù!";
-    private const string becomeOni = "{0}´ÔÀÌ ¼÷ÁÖ¿À´Ï°¡ µÇ¾ú½À´Ï´Ù!";
+    private const string beforeGameStart = "ì ì‹œ ë’¤ì— ìˆ™ì£¼ ì˜¤ë‹ˆê°€ ê²°ì •ë©ë‹ˆë‹¤.\nì„œë¡œ ë©€ë¦¬ ë–¨ì–´ì§€ì„¸ìš”!";
+    private const string countDown = "{0}ì´ˆ ë‚¨ì•˜ìŠµë‹ˆë‹¤!";
+    private const string becomeOni = "{0}ë‹˜ì´ ìˆ™ì£¼ì˜¤ë‹ˆê°€ ë˜ì—ˆìŠµë‹ˆë‹¤!";
 
     public override void Init()
     {

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,7 +46,7 @@ public class ManageClanBack : MonoBehaviour
         App.Data.Clan.GetClanName(
         (clanName) =>
         {
-            clanNameTMP.text = string.Format("Ŭ�� <color=#00FF00>{0}</color>", clanName);
+            clanNameTMP.text = string.Format("클랜 <color=#00FF00>{0}</color>", clanName);
         },
         (error) =>
         {

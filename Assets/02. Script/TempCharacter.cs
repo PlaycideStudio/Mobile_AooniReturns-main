@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using Fusion;
@@ -98,6 +98,6 @@ public class TempCharacter : MonoBehaviour
 
     private void SaveCurrentInfo()
     {
-        // ³×Æ®¿öÅ© µ¿±âÈ­ ·ÎÁ÷
+        // ë„¤íŠ¸ì›Œí¬ ë™ê¸°í™” ë¡œì§
     }
 }

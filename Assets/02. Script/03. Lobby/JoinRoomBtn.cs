@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Fusion;
@@ -29,11 +29,11 @@ public class JoinRoomBtn : MonoBehaviour
 
     private string GetModeName(int _modeIndex) => (ModeType)_modeIndex switch
     {
-        ModeType.Infection => "°¨¿° ¸ğµå",
-        ModeType.Bomb => "ÆøÅº ¸ğµå",
-        ModeType.Police => "µµµÏ°ú °æÂû ¸ğµå",
-        ModeType.Dual => "µà¾ó ¸ğµå",
-        _ => "°¨¿° ¸ğµå"
+        ModeType.Infection => "ê°ì—¼ ëª¨ë“œ",
+        ModeType.Bomb => "í­íƒ„ ëª¨ë“œ",
+        ModeType.Police => "ë„ë‘‘ê³¼ ê²½ì°° ëª¨ë“œ",
+        ModeType.Dual => "ë“€ì–¼ ëª¨ë“œ",
+        _ => "ê°ì—¼ ëª¨ë“œ"
     }; 
 
     public void SetNone()

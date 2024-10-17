@@ -1,4 +1,4 @@
-using PlayFab;
+ï»¿using PlayFab;
 using PlayFab.ClientModels;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ public enum EPlayerDataError
 
 public class PlayerData : Manager
 {
-    private string DefaultNick => $"¾Æ¿À¿À´Ï{new Random().Next(1000, 10000)}";
+    private string DefaultNick => $"ì•„ì˜¤ì˜¤ë‹ˆ{new Random().Next(1000, 10000)}";
 
     private Dictionary<string, UserDataRecord> roData;
     private Dictionary<string, UserDataRecord> userData;

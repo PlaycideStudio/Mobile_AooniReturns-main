@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -21,7 +21,7 @@ public class PlayerPanel : UIBase
     public override void Init()
     {
         nickTMP.text = App.Data.Player.NickName;
-        recordTMP.text = string.Format("{0}¿À´Ï / {1}È÷·Î½Ã / {2}»ıÁ¸", App.Data.Player.OniKills, App.Data.Player.HiroshiKills, App.Data.Player.SurvivalCount);
+        recordTMP.text = string.Format("{0}ì˜¤ë‹ˆ / {1}íˆë¡œì‹œ / {2}ìƒì¡´", App.Data.Player.OniKills, App.Data.Player.HiroshiKills, App.Data.Player.SurvivalCount);
 
         goldTMP.text = App.Data.Player.Currency.ToString();
 
@@ -72,7 +72,7 @@ public class PlayerPanel : UIBase
             App.Data.Clan.GetClanName(
             (result) =>
             {
-                clanTMP.text = string.Format("Å¬·£ <color=#00FF00>{0}</color>", result);
+                clanTMP.text = string.Format("í´ëœ <color=#00FF00>{0}</color>", result);
             }, null);
         }
     }
@@ -83,11 +83,11 @@ public class PlayerPanel : UIBase
         (rank, isRanked) =>
         {
             var rankText = isRanked ? rank.ToString() : "";
-            rankTMP.text = string.Format("ÀüÃ¼ ·©Å· <color=#00FF00>{0}</color>", rankText);
+            rankTMP.text = string.Format("ì „ì²´ ë­í‚¹ <color=#00FF00>{0}</color>", rankText);
         },
         (error)=>
         {
-            rankTMP.text = "ÀüÃ¼ ·©Å· <color=#00FF00>¼øÀ§±Ç ¿Ü</color>";
+            rankTMP.text = "ì „ì²´ ë­í‚¹ <color=#00FF00>ìˆœìœ„ê¶Œ ì™¸</color>";
         });
     }
 

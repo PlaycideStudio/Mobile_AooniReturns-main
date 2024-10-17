@@ -1,4 +1,4 @@
-using System.Linq;
+ï»¿using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -47,7 +47,7 @@ public class ReadyUIManager : UIManager
     {
         var currSession = App.Manager.Network.Session;
 
-        roomNameTMP.text = string.Format("[´ë±âÁß] {0}", currSession.Name);
+        roomNameTMP.text = string.Format("[ëŒ€ê¸°ì¤‘] {0}", currSession.Name);
 
         var modeType = App.Manager.Network.Session.Properties["GameMode"];
         modeTMP.text = GetModeName(modeType);
@@ -55,11 +55,11 @@ public class ReadyUIManager : UIManager
 
     private string GetModeName(int _modeIndex) => (ModeType)_modeIndex switch
     {
-        ModeType.Infection => "°¨¿°",
-        ModeType.Bomb => "ÆøÅº",
-        ModeType.Police => "µµµÏ°ú °æÂû",
-        ModeType.Dual => "µà¾ó",
-        _ => "°¨¿°"
+        ModeType.Infection => "ê°ì—¼",
+        ModeType.Bomb => "í­íƒ„",
+        ModeType.Police => "ë„ë‘‘ê³¼ ê²½ì°°",
+        ModeType.Dual => "ë“€ì–¼",
+        _ => "ê°ì—¼"
     };
 
     public void SetPlayerCount()

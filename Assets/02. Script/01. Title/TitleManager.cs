@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using System;

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -75,12 +75,14 @@ public class CreateRoomPanel : UIBase
 
     private void OnClickCreateRoom()
     {
-        if(roomNameInput.text.Length <= 0)
+        //====ADDED: 만약 방제가 없으면 방제 기본값 중 1개=============================
+        if (roomNameInput.text.Length <= 0)
         {
             int random_num = Random.Range(0, 5);
             roomNameInput.text = default_room_names[random_num];
         }
-        
+        //==================================================================================================================
+
         App.Manager.Network.CreateMatch(roomNameInput.text, passwordInput.text, selectedMode);
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using Fusion;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,9 +51,9 @@ public abstract class GameManager : NetManager
 
         if (Runner.IsSceneAuthority)
         {
-            // ¹ò·Î º¸³»¸é ¾È°¨. ½ÇÆĞ ÀÌÀ¯ ±¸±Û¸µÇØµµ ¾È³ª¿È.
-            // ObjectNotConfirmed¶ó´Âµ¥ ¼­¹ö¿¡¼­ ÇØÁÖ´Â°Ç ÀÖÁöµµ ¾ÊÀ¸¸é¼­ È®ÀÎÀº ¿ÖÇÑ´Ù´Â°ÇÁö ¸ğ¸£°ÚÀ½
-            // µµ´ëÃ¼ ¾ê³»°¡ ¹» Ãß±¸ÇÏ°í ¹» À§ÇØ¼­ ÀÌ·¸°Ô ÇÏ´ÂÁöµµ ¸ğ¸£°ÚÀ½
+            // ë±Œë¡œ ë³´ë‚´ë©´ ì•ˆê°. ì‹¤íŒ¨ ì´ìœ  êµ¬ê¸€ë§í•´ë„ ì•ˆë‚˜ì˜´.
+            // ObjectNotConfirmedë¼ëŠ”ë° ì„œë²„ì—ì„œ í•´ì£¼ëŠ”ê±´ ìˆì§€ë„ ì•Šìœ¼ë©´ì„œ í™•ì¸ì€ ì™œí•œë‹¤ëŠ”ê±´ì§€ ëª¨ë¥´ê² ìŒ
+            // ë„ëŒ€ì²´ ì–˜ë‚´ê°€ ë­˜ ì¶”êµ¬í•˜ê³  ë­˜ ìœ„í•´ì„œ ì´ë ‡ê²Œ í•˜ëŠ”ì§€ë„ ëª¨ë¥´ê² ìŒ
             // TargetObjectVerificationResult.ObjectNotConfirmed
             yield return new WaitForSeconds(1f);
             StartCoroutine(InternalGameLoop());

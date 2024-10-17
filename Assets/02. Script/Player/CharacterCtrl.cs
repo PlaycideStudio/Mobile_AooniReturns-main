@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine.Tilemaps;
@@ -23,7 +23,7 @@ public class CharacterCtrl : NetworkBehaviour
 
     private Vector2 lastInputDir_forObstacle = Vector2.zero;
     private Vector2 lastInputDir = Vector2.zero;
-    public float moveTimer; //Á» ´õ RPG MAKER ´À³¦ÀÇ ¿òÁ÷ÀÓÀ» À§ÇÑ Å¸ÀÌ¸Ó
+    public float moveTimer; //ì¢€ ë” RPG MAKER ëŠë‚Œì˜ ì›€ì§ì„ì„ ìœ„í•œ íƒ€ì´ë¨¸
 
     //==================================
 
@@ -88,7 +88,7 @@ public class CharacterCtrl : NetworkBehaviour
 
         currAnimator = humanCtrl.GetComponent<Animator>();
 
-        //====ADDED: Ãß°¡µÈ ÄÚµå(Ä³¸¯ÅÍ Å¸ÀÏ ±×¸®µå¿¡ ¸ÂÃç ÀÌµ¿)=====================================================================
+        //====ADDED: ì¶”ê°€ëœ ì½”ë“œ(ìºë¦­í„° íƒ€ì¼ ê·¸ë¦¬ë“œì— ë§ì¶° ì´ë™)=====================================================================
         GameObject main_cam = GameObject.FindGameObjectWithTag("MainCamera");
         main_cam.transform.parent = this.gameObject.transform;
         targetPos = transform.position;
@@ -185,11 +185,11 @@ public class CharacterCtrl : NetworkBehaviour
 
         if (Mathf.Abs(xDir) > Mathf.Abs(yDir))
         {
-            yDir = 0; // ÁÂ¿ì
+            yDir = 0; // ì¢Œìš°
         }
         else
         {
-            xDir = 0; // »óÇÏ
+            xDir = 0; // ìƒí•˜
         }
 
         var dir = new Vector2(xDir, yDir);
@@ -219,7 +219,7 @@ public class CharacterCtrl : NetworkBehaviour
             
         }
 
-        //====ADDED: ¿¹¿Ü»çÇ× - Á¶ÀÌ½ºÆ½À» ºü¸£°Ô µå·¡±×ÇÏ°í ³ùÀ»¶§ Ä³¸¯ÅÍ°¡ ÀÌµ¿ÁßÀÌ¶ó¸é ÀÌµ¿ Á¾·á±îÁö ´ë±â=============================
+        //====ADDED: ì˜ˆì™¸ì‚¬í•­ - ì¡°ì´ìŠ¤í‹±ì„ ë¹ ë¥´ê²Œ ë“œë˜ê·¸í•˜ê³  ë†¨ì„ë•Œ ìºë¦­í„°ê°€ ì´ë™ì¤‘ì´ë¼ë©´ ì´ë™ ì¢…ë£Œê¹Œì§€ ëŒ€ê¸°=============================
         if (Mathf.Abs(xDir) < 0.15f && Mathf.Abs(yDir) < 0.15f)
         {
             if (char_inMove)
@@ -246,20 +246,20 @@ public class CharacterCtrl : NetworkBehaviour
 
         MoveTowardsGrid();
 
-        //====DEPRECATED: ±âÁ¸ÀÇ ÄÚµå==============================================================================
+        //====DEPRECATED: ê¸°ì¡´ì˜ ì½”ë“œ==============================================================================
 
         //CurrDir = dir.normalized;
         //rb2d.velocity = 24 * CurrDir;
     }
 
-    #region ADDED: ±×¸®µå ´ÜÀ§·Î Ä³¸¯ÅÍ ÀÌµ¿
+    #region ADDED: ê·¸ë¦¬ë“œ ë‹¨ìœ„ë¡œ ìºë¦­í„° ì´ë™
     void MoveTowardsGrid()
     {
         moveTimer += 0.25f;
 
         if (moveTimer > 1)
         {
-            //Ä³¸¯ÅÍÀÇ ÇöÀç À§Ä¡ÀÎ transform.positionÀ» gridSize·Î ³ª´©±â => °ªÀ» ¹İ¿Ã¸²(Mathf.Round)ÇÏ¿© ÇöÀç À§Ä¡¸¦ ±×¸®µå ´ÜÀ§·Î ¸ÂÃã
+            //ìºë¦­í„°ì˜ í˜„ì¬ ìœ„ì¹˜ì¸ transform.positionì„ gridSizeë¡œ ë‚˜ëˆ„ê¸° => ê°’ì„ ë°˜ì˜¬ë¦¼(Mathf.Round)í•˜ì—¬ í˜„ì¬ ìœ„ì¹˜ë¥¼ ê·¸ë¦¬ë“œ ë‹¨ìœ„ë¡œ ë§ì¶¤
             Vector3 currentPos = new Vector3(
               Mathf.Round(transform.position.x / gridSize) * gridSize,
               Mathf.Round(transform.position.y / gridSize) * gridSize,
@@ -268,14 +268,14 @@ public class CharacterCtrl : NetworkBehaviour
             
             targetPos = currentPos;
 
-            if (lastInputDir.x > 0) // ÀÌµ¿ - ¿À¸¥ÂÊ
+            if (lastInputDir.x > 0) // ì´ë™ - ì˜¤ë¥¸ìª½
                 targetPos.x += gridSize;
-            else if (lastInputDir.x < 0) // ÀÌµ¿ - ¿ŞÂÊ
+            else if (lastInputDir.x < 0) // ì´ë™ - ì™¼ìª½
                 targetPos.x -= gridSize;
 
-            if (lastInputDir.y > 0) // ÀÌµ¿ - À§
+            if (lastInputDir.y > 0) // ì´ë™ - ìœ„
                 targetPos.y += gridSize;
-            else if (lastInputDir.y < 0) // ÀÌµ¿ - ¾Æ·¡
+            else if (lastInputDir.y < 0) // ì´ë™ - ì•„ë˜
                 targetPos.y -= gridSize;
 
 
@@ -289,7 +289,7 @@ public class CharacterCtrl : NetworkBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.25f);
 
-        // ¸¸¾à Ä³¸¯ÅÍ°¡ ±×¸®µåÀÇ Áß¾Ó¿¡ °ÅÀÇ ±ÙÁ¢ÇßÀ¸¸é ±×¸®µå ´ÜÀ§·Î ¸ÂÃã
+        // ë§Œì•½ ìºë¦­í„°ê°€ ê·¸ë¦¬ë“œì˜ ì¤‘ì•™ì— ê±°ì˜ ê·¼ì ‘í–ˆìœ¼ë©´ ê·¸ë¦¬ë“œ ë‹¨ìœ„ë¡œ ë§ì¶¤
         if (Vector3.Distance(transform.position, targetPos) < 0.1f)
         {
             transform.position = new Vector3(
@@ -300,7 +300,7 @@ public class CharacterCtrl : NetworkBehaviour
         }
     }
 
-    void StoppingAnim() //±âÁ¸¿¡ ÀÌµ¿ÇÏ´ø Ä³¸¯ÅÍ°¡ ±×¸®µå Áß¾Ó¿¡ ±ÙÁ¢ÇÏ¸é °­Á¦·Î ¸ØÃã Ã³¸®
+    void StoppingAnim() //ê¸°ì¡´ì— ì´ë™í•˜ë˜ ìºë¦­í„°ê°€ ê·¸ë¦¬ë“œ ì¤‘ì•™ì— ê·¼ì ‘í•˜ë©´ ê°•ì œë¡œ ë©ˆì¶¤ ì²˜ë¦¬
     {
         if (char_inMove && Vector3.Distance(transform.position, targetPos) < 0.1f)
         {
