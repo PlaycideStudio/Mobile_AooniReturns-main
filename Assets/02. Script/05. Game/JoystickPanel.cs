@@ -25,8 +25,6 @@ public class JoystickPanel : UIBase, IPointerDownHandler, IDragHandler, IPointer
     public bool SnapX { get { return snapX; } set { snapX = value; } }
     public bool SnapY { get { return snapY; } set { snapY = value; } }
 
-    public bool joystickDragged;
-
     [SerializeField] private float handleRange = 1;
     [SerializeField] private float deadZone = 0.15f;
     [SerializeField] private AxisOptions axisOptions = AxisOptions.Both;

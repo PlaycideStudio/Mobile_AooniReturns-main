@@ -1081,7 +1081,7 @@ GameObject:
   - component: {fileID: 641661628}
   - component: {fileID: 641661627}
   - component: {fileID: 641661626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap_Obstacle
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

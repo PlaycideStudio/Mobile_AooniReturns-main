@@ -15,11 +15,15 @@ public enum CharacterType
 
 public class CharacterCtrl : NetworkBehaviour
 {
+    int player_layerMask;
+
     //==Edit: Added=====================
     private Vector2 targetPos;
     public float gridSize = 1f;
 
     public bool char_inMove;
+
+    Vector3 originaltPos;
 
     private Vector2 lastInputDir_forObstacle = Vector2.zero;
     private Vector2 lastInputDir = Vector2.zero;
@@ -92,6 +96,8 @@ public class CharacterCtrl : NetworkBehaviour
         GameObject main_cam = GameObject.FindGameObjectWithTag("MainCamera");
         main_cam.transform.parent = this.gameObject.transform;
         targetPos = transform.position;
+
+        player_layerMask = 1 << LayerMask.NameToLayer("Player");
         //=======================================================================================================================
     }
 
@@ -192,35 +198,67 @@ public class CharacterCtrl : NetworkBehaviour
             xDir = 0; // 상하
         }
 
+        
         var dir = new Vector2(xDir, yDir);
         lastInputDir_forObstacle = dir.normalized;
 
-        int layerMask = 1 << LayerMask.NameToLayer("Player");
-        layerMask = ~layerMask;
+        player_layerMask = ~player_layerMask;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, lastInputDir_forObstacle, 0.2f, layerMask);
+        //============================================================================================================
+
+        //startPosition = new Vector3(
+        //       transform.position.x / gridSize * gridSize,
+        //       transform.position.y / gridSize * gridSize,
+        //       transform.position.z);
+        //
+        //// Calculate the end position based on the input direction (lastInputDir_forObstacle)
+        //Vector3 endMask = new Vector3(
+        //    startPosition.x + lastInputDir_forObstacle.x * gridSize,
+        //    startPosition.y + lastInputDir_forObstacle.y * gridSize,
+        //    startPosition.z);
+        //
+        //RaycastHit2D raycastHit2D = Physics2D.Linecast(startPosition, endMask);
+        //
+        //if (raycastHit2D.collider != null)
+        //{
+        //    //Debug.Log(raycastHit2D.collider.name);  // Log the object hit by the Linecast
+        //
+        //    // Check if the hit object is tagged as an obstacle
+        //    if (raycastHit2D.collider.CompareTag("Obstacle"))
+        //    {
+        //        // If an obstacle is detected, stop the character's movement and reset its position
+        //        Vector3 originalPos = new Vector3(
+        //            Mathf.Floor(transform.position.x),
+        //            Mathf.Floor(transform.position.y),
+        //            transform.position.z);
+        //
+        //        transform.position = originalPos;  // Keep the current position (stop movement)
+        //        char_inMove = false;               // Stop movement flag
+        //        IsWalk = false;                    // Stop walking animation
+        //
+        //        return;  // Exit the method, preventing further movement
+        //    }
+        //}
+
+        //============================================================================================================
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lastInputDir_forObstacle, 1f, player_layerMask);
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("Obstacle"))
             {
-                Vector3 originaltPos = new Vector3(
-              Mathf.Floor(transform.position.x),
-              Mathf.Floor(transform.position.y),
-              transform.position.z);
-
                 transform.position = originaltPos; // Keep the current position
                 char_inMove = false; // Stop movement flag
                 IsWalk = false; // Stop walking animation
                                 //rb2d.velocity = 6 * CurrDir;
                 return;
             }
-            
+        
         }
 
         //====ADDED: 예외사항 - 조이스틱을 빠르게 드래그하고 놨을때 캐릭터가 이동중이라면 이동 종료까지 대기=============================
-        if (Mathf.Abs(xDir) < 0.15f && Mathf.Abs(yDir) < 0.15f)
+        if (Mathf.Abs(xDir) < 1f && Mathf.Abs(yDir) < 1f && hit.collider == null)
         {
             if (char_inMove)
             {
@@ -244,7 +282,11 @@ public class CharacterCtrl : NetworkBehaviour
 
         CurrDir = lastInputDir.normalized;
 
-        MoveTowardsGrid();
+
+        if (hit.collider == null)
+        {
+            MoveTowardsGrid();
+        }
 
         //====DEPRECATED: 기존의 코드==============================================================================
 
@@ -255,7 +297,7 @@ public class CharacterCtrl : NetworkBehaviour
     #region ADDED: 그리드 단위로 캐릭터 이동
     void MoveTowardsGrid()
     {
-        moveTimer += 0.25f;
+        moveTimer += 0.275f;
 
         if (moveTimer > 1)
         {
@@ -265,7 +307,6 @@ public class CharacterCtrl : NetworkBehaviour
               Mathf.Round(transform.position.y / gridSize) * gridSize,
               transform.position.z);
 
-            
             targetPos = currentPos;
 
             if (lastInputDir.x > 0) // 이동 - 오른쪽
@@ -285,24 +326,29 @@ public class CharacterCtrl : NetworkBehaviour
 
         CurrDir = lastInputDir.normalized;
 
-       
+        transform.position = Vector3.Lerp(transform.position, targetPos, 0.45f);
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.25f);
+        //transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.25f);
 
         // 만약 캐릭터가 그리드의 중앙에 거의 근접했으면 그리드 단위로 맞춤
-        if (Vector3.Distance(transform.position, targetPos) < 0.1f)
+        if (Vector3.Distance(transform.position, targetPos) < 0.25f)
         {
             transform.position = new Vector3(
                      Mathf.Round(transform.position.x / gridSize) * gridSize,
                      Mathf.Round(transform.position.y / gridSize) * gridSize,
                      transform.position.z);
 
+            if (Vector3.Distance(transform.position, targetPos) < 0.01f)
+            {
+                originaltPos = transform.position;
+            }
+
         }
     }
 
     void StoppingAnim() //기존에 이동하던 캐릭터가 그리드 중앙에 근접하면 강제로 멈춤 처리
     {
-        if (char_inMove && Vector3.Distance(transform.position, targetPos) < 0.1f)
+        if (char_inMove && Vector3.Distance(transform.position, targetPos) < 0.01f)
         {
             char_inMove = false;
             IsWalk = false;
@@ -339,6 +385,6 @@ public class CharacterCtrl : NetworkBehaviour
     private bool IsPositionColliding(Vector2 position)
     {
         Collider2D hitCollider = Physics2D.OverlapCircle(position, 0.5f);
-        return hitCollider != null; 
+        return hitCollider != null;
     }
 }
