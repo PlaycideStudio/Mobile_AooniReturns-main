@@ -8,14 +8,16 @@ public class ArrowCtrl : NetworkBehaviour
 {
     [SerializeField] Animator animCtrl;
 
+    private Projectiles selected_projectile;
     private Vector3 startPosition = new(0, 0.7f, 0);
-
     private CharacterCtrl myCharCtrl;
 
     private void Start()
     {
         gameObject.SetActive(false);
         myCharCtrl = GetComponentInParent<CharacterCtrl>();
+
+        RPC_SelectedProjectile();
     }
 
     public void FireArrow()
@@ -29,17 +31,36 @@ public class ArrowCtrl : NetworkBehaviour
         gameObject.SetActive(true);
 
         Vector2 normalizedDir = NormalizeDirection(_dir);
-
-        Vector3 targetPosition = transform.position + new Vector3(normalizedDir.x, normalizedDir.y, 0) * 2;
+        Vector3 targetPosition = transform.position + new Vector3(normalizedDir.x, normalizedDir.y, 0) * Projectile.projectile.distance;
 
         animCtrl.SetFloat("MoveX", normalizedDir.x);
         animCtrl.SetFloat("MoveY", normalizedDir.y);
 
-        transform.DOMove(targetPosition, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+        float distance = Vector3.Distance(transform.position, targetPosition);
+        float duration = distance / Projectile.projectile.speed;
+
+        transform.DOMove(targetPosition, duration).SetEase(Ease.Linear).OnComplete(() =>
         {
             gameObject.SetActive(false);
             transform.localPosition = startPosition;
         });
+    }
+
+    [Rpc]
+    void RPC_SelectedProjectile()
+    {
+        NetworkObject playerObject = Runner.GetPlayerObject(Runner.LocalPlayer);
+        string playerName = playerObject != null ? playerObject.name : "Unknown Player";
+
+
+        switch (selected_projectile)
+        {
+            case 0:
+                Projectile.projectile.shooter_name = playerName;
+                Projectile.projectile.distance = 2;
+                Projectile.projectile.speed = 1.1f;
+                break;
+        }
     }
 
     private Vector2 NormalizeDirection(Vector2 dir)
